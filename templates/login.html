@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<h2 style="text-align:center; margin-bottom: 20px;">Login</h2>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div style="max-width: 400px; margin: 0 auto 20px auto;">
+      {% for category, message in messages %}
+        <div style="padding: 10px; border-radius: 4px; margin-bottom: 10px; 
+                    color: {% if category == 'error' %}#b00020{% else %}#2e7d32{% endif %};
+                    background-color: {% if category == 'error' %}#ffcdd2{% else %}#c8e6c9{% endif %};">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<form action="{{ url_for('login') }}" method="POST" style="max-width: 400px; margin: 0 auto;">
+    <label for="username">Username:</label><br/>
+    <input type="text" id="username" name="username" autocomplete="username" required 
+           style="width: 100%; padding: 8px; margin-bottom: 15px;" aria-label="Username"/>
+
+    <label for="password">Password:</label><br/>
+    <div style="position: relative;">
+        <input type="password" id="password" name="password" autocomplete="current-password" required 
+               style="width: 100%; padding: 8px; margin-bottom: 5px;" aria-label="Password"/>
+        
+        <svg id="toggleEye" onclick="togglePassword()" xmlns="http://www.w3.org/2000/svg" 
+             viewBox="0 0 24 24" fill="none" stroke="#1976d2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+             style="width: 24px; height: 24px; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+                    cursor: pointer; transition: transform 0.2s ease;">
+            <path class="eye-open" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+            <circle class="eye-open" cx="12" cy="12" r="3"/>
+            <line class="eye-closed" x1="1" y1="1" x2="23" y2="23" style="display: none;"/>
+        </svg>
+    </div>
+
+    <button type="submit" style="
+        width: 100%;
+        padding: 10px;
+        background-color: #1976d2;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 15px;
+    ">Login</button>
+</form>
+
+<p style="text-align:center; margin-top: 20px; font-size: 0.9em;">
+  Don't have an account? <a href="{{ url_for('register') }}">Register here</a>.<br/>
+  <a href="{{ url_for('forgot_password') }}">Forgot Password?</a>
+</p>
+
+<script>
+  function togglePassword() {
+    const password = document.getElementById("password");
+    const eye = document.getElementById("toggleEye");
+    const openParts = eye.querySelectorAll(".eye-open");
+    const closedLine = eye.querySelector(".eye-closed");
+
+    const isHidden = password.type === "password";
+    password.type = isHidden ? "text" : "password";
+
+    // Toggle visibility of parts
+    openParts.forEach(el => el.style.display = isHidden ? "none" : "inline");
+    closedLine.style.display = isHidden ? "inline" : "none";
+
+    // Animate eye
+    eye.style.transform = "translateY(-50%) scale(1.2)";
+    setTimeout(() => {
+      eye.style.transform = "translateY(-50%) scale(1)";
+    }, 150);
+  }
+</script>
+{% endblock %}

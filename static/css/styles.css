@@ -1,0 +1,132 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0; padding: 0;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+.content {
+    max-width: 900px;
+    margin: 100px auto 40px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 0 10px #ccc;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+form input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #0056b3;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+    background-color: #004494;
+}
+
+.flashes {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.flashes li {
+    background-color: #ffdddd;
+    color: #900;
+    padding: 10px;
+    border: 1px solid #900;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+.user-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background-color: #0056b3;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.profile-pic-small {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+}
+
+.profile-pic-large {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #0056b3;
+}
+
+.logout-btn {
+    margin-left: auto;
+    background-color: #ff4d4d;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+}
+
+.logout-btn:hover {
+    background-color: #cc0000;
+}
+
+.user-details {
+    position: fixed;
+    top: 50px;
+    right: 20px;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 15px;
+    width: 250px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-radius: 6px;
+    z-index: 1001;
+}
+
+.result-container {
+    display: flex;
+    gap: 20px;
+}
+
+.left-panel {
+    flex: 1;
+}
+
+.right-panel {
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 10px;
+    background-color: #fafafa;
+}

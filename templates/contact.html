@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<h2 style="
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 30px;
+    color: #1976d2;
+    animation: fadeDown 0.8s ease-out;
+">Contact Us</h2>
+
+<form method="POST" action="{{ url_for('contact') }}" style="
+    max-width: 500px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    animation: fadeInUp 0.8s ease-out;
+">
+    <label for="name" style="display:block; margin-bottom: 8px; font-weight: bold;">Name</label>
+    <input type="text" id="name" name="name" placeholder="Your full name" required style="
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        transition: box-shadow 0.3s ease;
+    " onfocus="this.style.boxShadow='0 0 5px #1976d2'" onblur="this.style.boxShadow='none'">
+
+    <label for="email" style="display:block; margin-bottom: 8px; font-weight: bold;">Email</label>
+    <input type="email" id="email" name="email" placeholder="Your email address" required style="
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        transition: box-shadow 0.3s ease;
+    " onfocus="this.style.boxShadow='0 0 5px #1976d2'" onblur="this.style.boxShadow='none'">
+
+    <label for="subject" style="display:block; margin-bottom: 8px; font-weight: bold;">Subject</label>
+    <input type="text" id="subject" name="subject" placeholder="Subject" required style="
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        transition: box-shadow 0.3s ease;
+    " onfocus="this.style.boxShadow='0 0 5px #1976d2'" onblur="this.style.boxShadow='none'">
+
+    <label for="message" style="display:block; margin-bottom: 8px; font-weight: bold;">Message</label>
+    <textarea id="message" name="message" placeholder="Write your message here..." rows="6" required style="
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 25px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        resize: vertical;
+        transition: box-shadow 0.3s ease;
+    " onfocus="this.style.boxShadow='0 0 5px #1976d2'" onblur="this.style.boxShadow='none'"></textarea>
+
+    <input type="submit" value="Send Message" style="
+        width: 100%;
+        padding: 12px;
+        background-color: #1976d2;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    " onmouseover="this.style.backgroundColor='#125a9c'" 
+      onmouseout="this.style.backgroundColor='#1976d2'"
+      onmousedown="this.style.transform='scale(0.96)'"
+      onmouseup="this.style.transform='scale(1)'">
+</form>
+
+<!-- Animations -->
+<style>
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
+{% endblock %}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume Analysis Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        h1, h2 {
+            color: #0366d6;
+        }
+        ul {
+            list-style-type: square;
+            margin-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        a.job-link {
+            text-decoration: none;
+            color: #007bff;
+        }
+        a.job-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Resume Analysis Result</h1>
+
+    <h2>Skills Extracted:</h2>
+    {% if skills %}
+        <ul>
+            {% for skill in skills %}
+                <li>{{ skill }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No skills found.</p>
+    {% endif %}
+
+    <h2>Qualifications:</h2>
+    {% if qualification %}
+        <p>{{ qualification }}</p>
+    {% else %}
+        <p>No qualifications found.</p>
+    {% endif %}
+
+    <h2>Experience:</h2>
+    {% if experience %}
+        <p>{{ experience }} years</p>
+    {% else %}
+        <p>No experience found.</p>
+    {% endif %}
+
+    <h2>Matched Jobs:</h2>
+    {% if jobs %}
+        <ul>
+            {% for job in jobs %}
+                <li>
+                    <strong>{{ job.title }}</strong><br>
+                    <a href="{{ job.search_url }}" target="_blank" class="job-link">View job listings</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No matching jobs found.</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Resume Analyzer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+    }
+
+    header {
+      text-align: center;
+      background-color: #003366;
+      color: white;
+      padding: 15px 0;
+      font-size: 1.8em;
+      font-weight: bold;
+      user-select: none;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      background: linear-gradient(to right, #0052cc, #007bff, #00bfff);
+      padding: 12px 30px;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav .nav-left,
+    nav .nav-right {
+      display: flex;
+      align-items: center;
+    }
+
+    a.nav-link {
+      color: white;
+      margin: 0 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1em;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    a.nav-link:hover,
+    a.nav-link:focus {
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
+      outline: none;
+    }
+
+    .profile-wrapper {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .profile-pic {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid white;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .profile-wrapper:hover .profile-pic {
+      box-shadow: 0 0 8px #00ffff;
+    }
+
+    .profile-dropdown {
+      display: none;
+      position: absolute;
+      top: 50px;
+      right: 0;
+      background-color: white;
+      color: black;
+      padding: 12px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      min-width: 160px;
+      z-index: 999;
+      text-align: center;
+    }
+
+    .profile-wrapper:hover .profile-dropdown,
+    .profile-wrapper:focus-within .profile-dropdown {
+      display: block;
+    }
+
+    .profile-dropdown p {
+      margin: 8px 0;
+      font-weight: bold;
+    }
+
+    .profile-dropdown a {
+      display: block;
+      margin: 6px 0;
+      color: #007bff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .profile-dropdown a:hover,
+    .profile-dropdown a:focus {
+      color: #004a99;
+      outline: none;
+    }
+
+    section.title {
+      text-align: center;
+      color: #007bff;
+      font-size: 2.5em;
+      padding: 20px 0;
+      font-weight: 700;
+      user-select: none;
+    }
+
+    main {
+      padding-bottom: 120px;
+    }
+
+    footer {
+      background-color: #222;
+      color: #ccc;
+      text-align: center;
+      padding: 30px 10px;
+      font-size: 0.95em;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      user-select: none;
+    }
+
+    footer div a.nav-link {
+      color: #ccc;
+      margin: 0 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    footer div a.nav-link:hover,
+    footer div a.nav-link:focus {
+      color: #00ffff;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    Resume Analyzer
+  </header>
+
+  <!-- Navigation -->
+  <nav role="navigation">
+    <div class="nav-left">
+      <a href="{{ url_for('index') }}" class="nav-link">Home</a>
+      <a href="{{ url_for('about') }}" class="nav-link">About</a>
+      <a href="{{ url_for('contact') }}" class="nav-link">Contact</a>
+    </div>
+
+    {% if user %}
+    <div class="nav-right profile-wrapper" tabindex="0" aria-label="User profile menu" aria-haspopup="true">
+      <img src="{{ url_for('static', filename='uploads/profile_pics/' ~ (user.profile_pic or 'default.png')) }}"
+           alt="Profile Picture of {{ user.name }}" class="profile-pic" />
+      <div class="profile-dropdown" role="menu">
+        <p>{{ user.name }}</p>
+        <a href="{{ url_for('profile', user_id=user.id) }}">My Profile</a>
+        <a href="{{ url_for('logout') }}" role="menuitem">Logout</a>
+      </div>
+    </div>
+    {% endif %}
+  </nav>
+
+  <!-- Title -->
+  <section class="title">
+    Resume Analyzer
+  </section>
+
+  <!-- Main Content -->
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Resume Analyzer. All rights reserved.
+    <div>
+      <a href="{{ url_for('index') }}" class="nav-link">Home</a>
+      <a href="{{ url_for('upload') }}" class="nav-link">Upload</a>
+      <a href="{{ url_for('about') }}" class="nav-link">About</a>
+      <a href="{{ url_for('contact') }}" class="nav-link">Contact</a>
+    </div>
+  </footer>
+
+</body>
+</html>

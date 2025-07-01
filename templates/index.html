@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Home - Resume Analyzer{% endblock %}
+{% block content %}
+<style>
+  .fullpage-container {
+    height: calc(100vh - 110px); /* Adjust for navbar + header */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .animated-title {
+    font-size: 3em;
+    color: white;
+  }
+</style>
+
+<div class="fullpage-container">
+  <h1 class="animated-title">Welcome to the Resume Analyzer</h1>
+</div>
+{% endblock %}

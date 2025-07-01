@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Resume Analyzer</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 0;
+            animation: fadeBg 1s ease-in-out;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1976d2;
+            font-size: 2em;
+            margin-bottom: 20px;
+            animation: fadeDown 1s ease;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #333;
+            margin-bottom: 16px;
+        }
+
+        .download, .back {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        a.button {
+            display: inline-block;
+            background-color: #1976d2;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        a.button:hover {
+            background-color: #125a9c;
+            transform: scale(1.05);
+        }
+
+        a.button:active {
+            transform: scale(0.98);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeBg {
+            from { background-color: #d7e3ea; }
+            to { background-color: #eef2f3; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>About Resume Analyzer</h1>
+        <p>
+            The Resume Analyzer is a Flask-based web application that allows users to upload their resumes in PDF format.
+            It extracts the text from the document, analyzes the contents, and recommends suitable job roles based on the
+            skills, education, and experience mentioned in the resume.
+        </p>
+        <p>
+            The goal is to assist job seekers and HR professionals in matching resumes with relevant job profiles quickly
+            and efficiently. With modern web UI, animations, and secure login features, the system is both user-friendly and powerful.
+        </p>
+        <p>
+            The analyzer uses libraries like PyMuPDF for parsing PDF content and simple logic to map keywords to job suggestions.
+        </p>
+
+        <div class="download">
+            <a href="static/Resume_Analyzer_Project_Details.pdf" class="button" target="_blank">Download Project PDF</a>
+        </div>
+
+        <div class="back" style="margin-top: 20px;">
+            <a href="{{ url_for('index') }}" class="button">← Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

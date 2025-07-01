@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{% block title %}Resume Analyzer{% endblock %}</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      min-height: 100vh;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      background-color: rgba(0,0,0,0.4);
+      padding: 10px 20px;
+      align-items: center;
+    }
+    .navbar a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      position: relative;
+      transition: text-shadow 0.3s ease;
+    }
+    .navbar a:hover {
+      text-shadow: 0 0 10px #00cfff;
+    }
+    .profile-container {
+      position: relative;
+      display: inline-block;
+    }
+    .profile-pic {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid white;
+      transition: box-shadow 0.3s ease;
+    }
+    .profile-pic:hover {
+      box-shadow: 0 0 12px #00cfff;
+    }
+    .profile-dropdown {
+      display: none;
+      position: absolute;
+      top: 50px;
+      right: 0;
+      background-color: white;
+      color: #222;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      white-space: nowrap;
+      z-index: 100;
+    }
+    .profile-container:hover .profile-dropdown {
+      display: block;
+    }
+    .header-title {
+      text-align: center;
+      color: white;
+      font-size: 2.5em;
+      padding: 20px 0;
+      user-select: none;
+    }
+    input[type="text"], input[type="password"], input[type="file"] {
+      padding: 8px;
+      width: 100%;
+      max-width: 300px;
+      border-radius: 4px;
+      border: none;
+      margin-top: 5px;
+      margin-bottom: 15px;
+    }
+    input[type="submit"] {
+      background: #00cfff;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    input[type="submit"]:hover {
+      background: #0099cc;
+    }
+    form {
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
+      background: rgba(255 255 255 / 0.1);
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+    }
+    h2, h3 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    a {
+      color: #00cfff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .result-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      max-width: 90%;
+      margin: 30px auto;
+      justify-content: center;
+    }
+    .left-panel, .right-panel {
+      background: rgba(255 255 255 / 0.1);
+      border-radius: 8px;
+      padding: 20px;
+      flex: 1 1 300px;
+      color: white;
+      box-shadow: 0 0 8px #00cfff;
+    }
+    embed {
+      border-radius: 8px;
+      box-shadow: 0 0 8px #00cfff;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div>
+      <a href="{{ url_for('index') }}">Home</a>
+      <a href="{{ url_for('upload') }}">Upload</a>
+      <a href="about.html">About (OpenAI)</a>
+      <a href="{{ url_for('contact') }}">Contact</a>
+
+    </div>
+    {% if session.get('username') %}
+    <div class="profile-container">
+      {% if session.get('profile_pic') %}
+      <img src="{{ url_for('static', filename='uploads/profile_pics/' + session['profile_pic']) }}" alt="Profile Picture" class="profile-pic" />
+      {% else %}
+      <img src="{{ url_for('static', filename='default_profile.png') }}" alt="Profile Picture" class="profile-pic" />
+      {% endif %}
+      <div class="profile-dropdown">
+        <p style="margin:0; font-weight:bold;">{{ session.get('name') }}</p>
+        <a href="{{ url_for('logout') }}">Logout</a>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+  <div class="header-title">Resume Analyzer</div>
+  {% block content %}{% endblock %}
+</body>
+</html>

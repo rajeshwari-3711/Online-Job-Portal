@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Job Matches for {{ username }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            color: #333;
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #0366d6;
+        }
+        h2, h3 {
+            color: #0366d6;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+        ul {
+            list-style-type: square;
+            margin-left: 20px;
+            font-size: 16px;
+            color: #444;
+            padding-left: 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .info-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin-bottom: 30px;
+        }
+        .info-list li {
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .jobs-container {
+            background: #f9f9f9;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        a.job-link {
+            text-decoration: none;
+            color: #007bff;
+        }
+        a.job-link:hover {
+            text-decoration: underline;
+        }
+        .footer-links {
+            margin-top: 25px;
+            font-size: 15px;
+        }
+        .footer-links a {
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .footer-links a.upload-link {
+            color: #007bff;
+        }
+        .footer-links a.logout-link {
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hi {{ username }}, here are your matched jobs!</h1>
+
+    <h3>Extracted Information:</h3>
+    <ul class="info-list">
+        <li><strong>Skills:</strong> {% if skills %}{{ skills | join(', ') }}{% else %}No skills found.{% endif %}</li>
+        <li><strong>Qualification:</strong> {% if qualification %}{{ qualification }}{% else %}No qualification found.{% endif %}</li>
+        <li><strong>Experience:</strong> {% if experience %}{{ experience }} years{% else %}No experience found.{% endif %}</li>
+    </ul>
+
+    <h3>Matched Jobs:</h3>
+    <div class="jobs-container">
+        {% if jobs %}
+            <ul>
+                {% for job in jobs %}
+                    <li>
+                        <strong>{{ job.title }}</strong><br />
+                        <a href="{{ job.search_url }}" target="_blank" class="job-link">View job listings</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p style="color: #888; font-style: italic;">No matching jobs found.</p>
+        {% endif %}
+    </div>
+
+    <div class="footer-links">
+        <a href="{{ url_for('upload') }}" class="upload-link">Upload another resume</a> |
+        <a href="{{ url_for('logout') }}" class="logout-link">Logout</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,4 @@
+to run the program on server u need to run the program using python app.py then 
+you need to open the windows power shell and locate the project using cd
+and then paste this link in power shell (ngrok http 5000) then it will genrate shereble link
+ 
